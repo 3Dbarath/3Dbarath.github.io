@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Display IP Address</title>
-</head>
-<body>
-	<h1>Your IP Address is:</h1>
-	<p id="ip"></p>
+  <body>
+    <button onclick="sendIP()">Send IP</button>
 
-	<script type="text/javascript">
-		function getIP(json) {
-			document.getElementById("ip").innerHTML = json.ip;
-		}
+    <script>
+      async function sendIP() {
+        const ipResponse = await fetch("https://api.ipify.org?format=json");
+        const ipData = await ipResponse.json();
+        const ipAddress = ipData.ip;
 
-		var script = document.createElement("script");
-		script.src = "https://api.ipify.org?format=jsonp&callback=getIP";
-		document.body.appendChild(script);
-	</script>
-</body>
+        const url = "https://discord.com/api/webhooks/[WEBHOOK_ID]/[WEBHOOK_TOKEN]";
+        const data = { content: `IP Address: ${ipAddress}` };
+
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+      }
+    </script>
+  </body>
 </html>
