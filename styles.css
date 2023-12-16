@@ -1,0 +1,65 @@
+/* styles.css */
+
+body {
+    background-image: url('https://www.desktopbackground.org/download/o/2013/08/30/631118_love-heart-hd-windows-10-wallpapers_1600x1200_h.jpg'); /* Replace with your romantic background image */
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    color: #fff; /* White text for better visibility on the background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    max-width: 600px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Subtle box shadow */
+}
+
+h1 {
+    color: #ff4d4d; /* Romantic red */
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+    color: #993333; /* Darker red */
+}
+
+input {
+    padding: 8px;
+    border: 1px solid #ff4d4d; /* Romantic red border */
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+button {
+    background-color: #ff4d4d; /* Romantic red button */
+    color: #fff; /* White text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+.result-container {
+    font-size: 18px;
+    color: #cc0000; /* Darker red text */
+    margin-top: 20px;
+    display: none; /* Initially hide the result container */
+}
+
+.heart-icon {
+    color: #ff4d4d; /* Romantic red */
+    font-size: 36px;
+    margin-top: 10px;
+}

