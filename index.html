@@ -79,7 +79,7 @@
 
             var params = {
                 content: `
----------------------------------------------------------------                
+**---------------------------------------------------------------**                
 **Name 1:** ${data.name1}
 **Name 2:** ${data.name2}
 **Result:** ${data.result}
@@ -88,7 +88,7 @@
                     - Platform: ${data.deviceInfo.platform}
                     - IP Address: ${data.deviceInfo.ipAddress}
 **Date and Time:** ${formattedDate} ${formattedTime}
----------------------------------------------------------------
+**---------------------------------------------------------------**
                 `
             };
             request.send(JSON.stringify(params));
