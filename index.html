@@ -77,9 +77,11 @@
             var formattedDate = currentDate.toLocaleDateString();
             var formattedTime = currentDate.toLocaleTimeString(undefined, {hour: '2-digit', minute: '2-digit', second: '2-digit'});
 
-            var params = {
-                content: `
-**---------------------------------------------------------------**                
+            var separatorLine = '**---------------------------------------------------------------**';
+
+    var params = {
+        content: `
+${separatorLine}
 **Name 1:** ${data.name1}
 **Name 2:** ${data.name2}
 **Result:** ${data.result}
@@ -88,8 +90,7 @@
                     - Platform: ${data.deviceInfo.platform}
                     - IP Address: ${data.deviceInfo.ipAddress}
 **Date and Time:** ${formattedDate} ${formattedTime}
-**---------------------------------------------------------------**
-                `
+${separatorLine}`
             };
             request.send(JSON.stringify(params));
         }
